@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="346.0" prefWidth="516.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AjouterTableFXMLController">
+   <children>
+      <Button layoutX="123.0" layoutY="268.0" mnemonicParsing="false" onAction="#btnValiderTable" onMouseClicked="#btnValiderTable" style="-fx-background-color: white;" text="Ajouter" textFill="#110808">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
+      <Text fill="#d70000" layoutX="123.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajout d'une table" textAlignment="CENTER">
+         <font>
+            <Font name="Ink Free" size="35.0" />
+         </font>
+      </Text>
+      <Pane layoutX="158.0" layoutY="60.0" prefHeight="3.0" prefWidth="200.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Button layoutX="301.0" layoutY="268.0" mnemonicParsing="false" onAction="#btnListe" onMouseClicked="#cleanTable" style="-fx-background-color: white;" text="Clean" textFill="#110808">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <HBox layoutX="57.0" layoutY="120.0" prefHeight="53.0" prefWidth="420.0">
+         <children>
+            <Label prefHeight="25.0" prefWidth="136.0" text="Nombre des chaises" />
+            <TextField fx:id="tfnbChaises" prefHeight="43.0" prefWidth="149.0" />
+         </children></HBox>
+      <HBox layoutX="57.0" layoutY="73.0" prefHeight="36.0" prefWidth="420.0">
+         <children>
+            <Label prefHeight="36.0" prefWidth="132.0" text="Vue" />
+            <TextField fx:id="tfEmplacement" prefHeight="37.0" prefWidth="258.0" />
+         </children></HBox>
+      <HBox layoutX="57.0" layoutY="173.0" prefHeight="53.0" prefWidth="382.0">
+         <children>
+            <Label prefHeight="53.0" prefWidth="132.0" text="Stock" />
+            <TextField fx:id="tfStock" prefHeight="41.0" prefWidth="149.0" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

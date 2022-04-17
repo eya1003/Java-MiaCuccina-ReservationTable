@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="447.0" prefWidth="713.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ListEmplacementsController">
+   <children>
+      <TableView fx:id="emplacementTable" layoutX="20.0" layoutY="130.0" prefHeight="290.0" prefWidth="674.0">
+        <columns>
+          <TableColumn fx:id="vueColl" maxWidth="200.0" prefWidth="200.0" style="-fx-alignment: center;" text="Vues" />
+          <TableColumn fx:id="descriptionColl" maxWidth="300.0" prefWidth="300.0" style="-fx-alignment: center;" text="Descriptions" />
+            <TableColumn fx:id="actionsColl" maxWidth="200.0" prefWidth="200.0" style="-fx-alignment: center;" text="Actions" />
+        </columns>
+      </TableView>
+      <Pane layoutY="61.0" prefHeight="3.0" prefWidth="200.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Text layoutX="35.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des emplacements">
+         <font>
+            <Font name="Book Antiqua Italic" size="36.0" />
+         </font>
+      </Text>
+      <Button layoutX="86.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#refreshTable" text="Refresh" textAlignment="CENTER" textFill="#e10808">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="231.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#getAdd" text="Ajouter" textFill="#d91c1c">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="647.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#close" text="Close" />
+   </children>
+</AnchorPane>
