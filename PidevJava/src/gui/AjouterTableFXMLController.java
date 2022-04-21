@@ -9,6 +9,7 @@ import entities.Table;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import static java.time.Duration.between;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -54,7 +55,29 @@ public class AjouterTableFXMLController implements Initializable {
                 Integer.parseInt(tfStock.getText())
         );
         TableService ts = new TableService();
+         String Emp = tfEmplacement.getText();
+         String chaise= tfnbChaises.getText().toString();
         try {
+            if (  Emp.isEmpty()  ) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("Tous les champs doit etre repmlir");
+                alert.show();
+            }
+            else if (  chaise.toString().length()   >10 ) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("La valeur du stock doit etre entre 1 et 10");
+                alert.show();
+            }
+           
+//           else if (  tfnbChaises.toString().isEmpty() ||  tfStock.toString().isEmpty() ||  tfEmplacement.toString().isEmpty() ) {
+//                Alert alert = new Alert(Alert.AlertType.ERROR);
+//                alert.setHeaderText(null);
+//                alert.setContentText("Tous les champs doit etre repmlir");
+//                alert.show();
+//            }
+                else {
             ts.ajouterTable(t);
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Succes");
@@ -63,6 +86,7 @@ public class AjouterTableFXMLController implements Initializable {
             tfEmplacement.setText("");
             tfnbChaises.setText("");
             tfStock.setText("");
+        }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

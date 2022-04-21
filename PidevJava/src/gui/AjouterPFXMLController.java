@@ -82,13 +82,19 @@ public class AjouterPFXMLController implements Initializable {
         String vue = tvue.getText();
         String desc = tdescription.getText();
         try {
-                if ( vue.isEmpty() || desc.isEmpty() ) {
+                if ( vue.isEmpty() || desc.isEmpty() ||  (vue.length() < 3 || desc.length() < 3 )) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
                 alert.setContentText("Please Fill the data");
                 alert.show();
                 tvue.setText("");
                 tdescription.setText("");
+            }
+                else   if (  vue.length() < 3 || desc.length() < 3 ) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("Vue et Descrptiob doit contient au moins 3 caractères");
+                alert.show();
             }
                 else if ( vue != desc ){
                         

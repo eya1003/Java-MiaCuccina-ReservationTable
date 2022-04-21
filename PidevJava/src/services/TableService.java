@@ -7,6 +7,7 @@ package services;
 
 import entities.Table;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import utils.MyDB;
@@ -36,5 +37,21 @@ public class TableService implements ITable<Table>{
             System.out.println(ex.getMessage());
         }
     }
+     @Override
+    public void deleteTable(int id) throws SQLException {
+         String req = "DELETE FROM `table` WHERE id_tab = "+ id;
+        stm = connexion.createStatement();
+        stm.executeUpdate(req);
+    }
     
+    public void modifierTab(Table t, int id) throws SQLException {
+  String req = "UPDATE table SET  emp = ?, nb_chaise_tab = ?,  stock_tab = ? where id_tab= " + id;
+        PreparedStatement pre = connexion.prepareStatement(req);
+  
+        pre.setString(1, t.getEmp());
+        pre.setInt(2, t.getNb_chaise_tab());
+        pre.setInt(3, t.getStock_tab());
+        
+       pre.executeUpdate();  
+    }
 }

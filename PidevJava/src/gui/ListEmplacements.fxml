@@ -12,8 +12,9 @@
    <children>
       <TableView fx:id="emplacementTable" layoutX="20.0" layoutY="130.0" prefHeight="290.0" prefWidth="674.0">
         <columns>
-          <TableColumn fx:id="vueColl" maxWidth="200.0" prefWidth="200.0" style="-fx-alignment: center;" text="Vues" />
-          <TableColumn fx:id="descriptionColl" maxWidth="300.0" prefWidth="300.0" style="-fx-alignment: center;" text="Descriptions" />
+            <TableColumn fx:id="idcoll" maxWidth="200.0" style="-fx-alignment: center;" text="id" />
+            <TableColumn fx:id="vueColl" maxWidth="200.0" prefWidth="200.0" style="-fx-alignment: center;" text="Vues" />
+          <TableColumn fx:id="descriptionColl" maxWidth="300.0" prefWidth="201.0" style="-fx-alignment: center;" text="Descriptions" />
             <TableColumn fx:id="actionsColl" maxWidth="200.0" prefWidth="200.0" style="-fx-alignment: center;" text="Actions" />
         </columns>
       </TableView>
@@ -23,16 +24,26 @@
             <Font name="Book Antiqua Italic" size="36.0" />
          </font>
       </Text>
-      <Button layoutX="86.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#refreshTable" text="Refresh" textAlignment="CENTER" textFill="#e10808">
+      <Button layoutX="618.0" layoutY="71.0" mnemonicParsing="false" onMouseClicked="#refreshTable" prefHeight="25.0" prefWidth="81.0" text="Refresh" textAlignment="CENTER" textFill="#e10808">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="231.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#getAdd" text="Ajouter" textFill="#d91c1c">
+      <Button layoutX="61.0" layoutY="81.0" mnemonicParsing="false" onMouseClicked="#getAdd" text="Ajouter" textFill="#d91c1c">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
       <Button layoutX="647.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#close" text="Close" />
+      <Button layoutX="192.0" layoutY="81.0" mnemonicParsing="false" onMouseClicked="#getAddTable" text="Ajouter table" textFill="#d91c1c">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="357.0" layoutY="84.0" mnemonicParsing="false" onMouseClicked="#btnreserver" text="Reserver" textFill="#d91c1c">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

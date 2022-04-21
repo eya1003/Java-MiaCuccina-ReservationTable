@@ -8,14 +8,19 @@ package gui;
 import entities.Reservation;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import services.ReservationService;
 
 /**
  * FXML Controller class
@@ -24,8 +29,6 @@ import javafx.scene.input.MouseEvent;
  */
 public class AjoutReservationController implements Initializable {
 
-    @FXML
-    private TextField tfvue;
     @FXML
     private DatePicker tdatedebut;
     @FXML
@@ -39,7 +42,6 @@ public class AjoutReservationController implements Initializable {
     Connection connection = null;
     ResultSet resultSet = null;
     PreparedStatement preparedStatement;
-    Reservation reservation = null;
     private boolean update;
 
     /**
@@ -47,39 +49,42 @@ public class AjoutReservationController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        Reservation p = new Reservation(tfvue.getText(), ParseTo.valueOf(tfphone()),tfadresse.getText()
-//        ,String.valueOf(tdatedebut.getValue()), String.valueOf(tdatefin.getValue()) );
-//        EmplacementService ps = new EmplacementService();
-//        String vue = tvue.getText();
-//        String desc = tdescription.getText();
-//        try {
-//                if ( vue.isEmpty() || desc.isEmpty() ) {
-//                Alert alert = new Alert(Alert.AlertType.ERROR);
-//                alert.setHeaderText(null);
-//                alert.setContentText("Please Fill the data");
-//                alert.show();
-//                tvue.setText("");
-//                tdescription.setText("");
-//            }
-//                else{
-//                        
-//                        ps.ajouterEmplacement(p);
-//                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-//                            alert.setTitle("Succes");
-//                            alert.setContentText("Reservation ajouté");
-//                            alert.show();
-//                            tvue.setText("");
-//                            tdescription.setText("");}
-//
-//   
-   }
+        
+    }
+       
 
     @FXML
     private void save(MouseEvent event) {
+           String addr = tfadresse.getText();
+        try {
+             
+             if (  addr.isEmpty() ){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("Ecrivez votre adresse!");
+                alert.show();
+            }
+             else {
+                 System.out.println(Date.valueOf(tdatedebut.getValue()).toString());
+         System.out.println(Date.valueOf(tdatefin.getValue()).toString());
+        Reservation p = new Reservation(Integer.parseInt(tfphone.getText()), tfadresse.getText(),Date.valueOf(tdatedebut.getValue()),Date.valueOf(tdatefin.getValue()));
+        ReservationService ps = new ReservationService();
+                    ps.ajouterReservation(p);
+                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                            alert.setTitle("Succes");
+                            alert.setContentText("Reservation ajouté");
+                            alert.show();
+           
+             }
+          
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+                
+                }
+
+        
     }
 
-    @FXML
-    private void clean(MouseEvent event) {
-    }
     
-}
+

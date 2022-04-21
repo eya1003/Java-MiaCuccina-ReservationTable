@@ -5,6 +5,8 @@
  */
 package pidevjava;
 
+import entities.Emplacement;
+import entities.Table;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -20,6 +22,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import services.EmplacementService;
+import services.TableService;
 
 /**
  *
@@ -28,7 +31,7 @@ import services.EmplacementService;
 
 //Main Class
 public class PersonnesFXMain extends Application {
-    
+    // singleton yaaml instance mara wa7da w ken t3awed izid aleha 
     Stage stage;
     Parent parent;
     
@@ -43,12 +46,8 @@ public class PersonnesFXMain extends Application {
             stage.setScene(scene);
               primaryStage.initStyle(StageStyle.TRANSPARENT);
             stage.show();
-//             EmplacementService s = new EmplacementService();
-//           try {
-//               s.deleteEmplacement(120);
-//           } catch (SQLException ex) {
-//               Logger.getLogger(PersonnesFXMain.class.getName()).log(Level.SEVERE, null, ex);
-//           }
+           
+           
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }

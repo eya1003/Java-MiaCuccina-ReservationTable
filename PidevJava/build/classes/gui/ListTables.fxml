@@ -28,5 +28,7 @@
       <Button layoutX="59.0" layoutY="68.0" mnemonicParsing="false" onMouseClicked="#refresh" prefHeight="31.0" prefWidth="72.0" text="Refresh" />
       <Button layoutX="163.0" layoutY="68.0" mnemonicParsing="false" onMouseClicked="#getadd" prefHeight="31.0" prefWidth="60.0" text="Ajouter" />
       <Button layoutX="645.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#close" prefHeight="22.0" prefWidth="60.0" text="Close" />
+      <Button layoutX="312.0" layoutY="68.0" mnemonicParsing="false" onMouseClicked="#getaddEmp" prefHeight="31.0" prefWidth="153.0" text="Ajouter un emplacement" />
+      <Button layoutX="501.0" layoutY="68.0" mnemonicParsing="false" onMouseClicked="#reservationbtn" prefHeight="31.0" prefWidth="117.0" text="Reserver" />
    </children>
 </AnchorPane>

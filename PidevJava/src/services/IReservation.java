@@ -5,16 +5,13 @@
  */
 package services;
 
-import entities.Table;
 import java.sql.SQLException;
 
 /**
  *
  * @author eyaam
  */
-public interface ITable<T> {
-     public void ajouterTable(T t) throws SQLException;
-    
-    public void deleteTable(int id) throws SQLException ;
-     public void modifierTab(T t, int id) throws SQLException;
+public interface IReservation<R> {
+    public void ajouterReservation(R t) throws SQLException;
+     public void deleteResv(int id) throws SQLException;
 }

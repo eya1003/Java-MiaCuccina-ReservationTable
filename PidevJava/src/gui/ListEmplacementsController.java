@@ -36,6 +36,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
+import javax.swing.JOptionPane;
 import services.EmplacementService;
 import utils.MyDB;
 
@@ -59,9 +60,10 @@ public class ListEmplacementsController implements Initializable {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
-    Emplacement emplacement = null;
     
     ObservableList<Emplacement> EmplacementListe = FXCollections.observableArrayList();
+    @FXML
+    private TableColumn<Emplacement, Integer> idcoll;
    
 
     /**
@@ -75,13 +77,13 @@ public class ListEmplacementsController implements Initializable {
         ResultSet rs = con.createStatement().executeQuery("SELECT * FROM emplacement");
             
         while(rs.next()){
-        EmplacementListe.add(new Emplacement(rs.getString("type_emplacement"),rs.getString("Description")));
+        EmplacementListe.add(new Emplacement(rs.getInt("id_emplacement"),rs.getString("type_emplacement"),rs.getString("Description")));
         }
         
         } catch (SQLException ex) {
             Logger.getLogger(ListEmplacementsController.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
+        idcoll.setCellValueFactory(new PropertyValueFactory<Emplacement,Integer>("id_emplacement"));
             vueColl.setCellValueFactory(new PropertyValueFactory<Emplacement,String>("type_emplacement"));
             descriptionColl.setCellValueFactory(new PropertyValueFactory<Emplacement,String>("Description"));  
             emplacementTable.setItems(EmplacementListe);
@@ -108,90 +110,42 @@ public class ListEmplacementsController implements Initializable {
 
                   //supprimer
                         btnsupp.setOnMouseClicked((MouseEvent event) -> {
-//                            try{
-//                               emplacement = emplacementTable.getSelectionModel().getSelectedItem();
-//                                query = "DELETE FROM `emplacement` WHERE id_emplacement="+emplacement.getId_emplacement();
-//                              Connection con = MyDB.getInstance().getConnexion();
-//                                  preparedStatement = connection.prepareStatement(query);
-//                                preparedStatement.execute();
-//                  
-//                           } catch (SQLException ex) {
-//                                Logger.getLogger(ListEmplacementsController.class.getName()).log(Level.SEVERE, null, ex);
-//                           }
-//                        });
+              
+                            EmplacementService T = new EmplacementService();
 
-                if (emplacementTable.getSelectionModel().getSelectedItem() != null) {
-            try {
-                emplacement = emplacementTable.getSelectionModel().getSelectedItem();
-                                query = "DELETE FROM `emplacement` WHERE id_emplacement  ="+emplacement.getId_emplacement();
-                                 Connection connection = MyDB.getInstance().getConnexion();
-                               PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+                             System.out.println(emplacementTable.getSelectionModel().getSelectedItem().getId_emplacement());
+       try{
+//                                     T.deleteEmplacement(emplacementTable.getSelectionModel().getSelectedItem().getId_emplacement());
+//                                       
+//                                       
+//           JOptionPane.showMessageDialog(null, "Data telah terhapus");
+//           Emplacement selectedItem = emplacementTable.getSelectionModel().getSelectedItem();
+//            emplacementTable.getItems().remove(selectedItem);       
+Emplacement e = emplacementTable.getSelectionModel().getSelectedItem();
+                                query = "DELETE FROM `emplacement` WHERE id_emplacement  ="+e.getId_emplacement();
+                                connection = MyDB.getInstance().getConnexion();
+                                preparedStatement = connection.prepareStatement(query);
                                 preparedStatement.execute();
-                       
-                                refreshTable();
-            } catch (SQLException ex) {
-                Logger.getLogger(ListEmplacementsController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("Vous devez selectionner un Emplacement");
-            alert.show();
+   } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "error"+e.getMessage());
+
         }
+
                         }); 
+                 
                         
                         
                         
                         
                         ////modifier
-                        btnModifier.setOnMouseClicked((MouseEvent event) -> {
-                            
-//                            emplacement = emplacementTable.getSelectionModel().getSelectedItem();
-//                            FXMLLoader loader = new FXMLLoader ();
-//                            loader.setLocation(getClass().getResource("/gui/AjouterPFXML.fxml"));
-//                            try {
-//                                loader.load();
-//                            } catch (IOException ex) {
-//                                Logger.getLogger(ListEmplacementsController.class.getName()).log(Level.SEVERE, null, ex);
-//                            }
-//                            
-//                            AjouterPFXMLController addStudentController = loader.getController();
-//                            addStudentController.setUpdate(true);
-//                            addStudentController.setTextField(emplacement.getType_emplacement(), emplacement.getDescription());
-//                            Parent parent = loader.getRoot();
-//                            Stage stage = new Stage();
-//                            stage.setScene(new Scene(parent));
-//                            stage.initStyle(StageStyle.UTILITY);
-//                            stage.show();
+                        btnModifier.setOnMouseClicked((MouseEvent event) -> {                       
+                if (emplacementTable.getSelectionModel().getSelectedItem() != null) {
+            EmplacementService updateSer = new EmplacementService();
+                 
+                    }
 
-if (emplacementTable.getSelectionModel().getSelectedItem() != null) {
-
-            
-               try {
-          Emplacement a = emplacementTable.getSelectionModel().getSelectedItem();
-        emplacement = a;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/AjouterPFXML.fxml"));
-        Parent root = loader.load();
-        AjouterPFXMLController hc = loader.getController();
-       hc.setEmplacement(a);
-        
-        Stage stage= new Stage();
-        Scene scene=new Scene(root);
-        stage.setScene(scene);
-        stage.showAndWait();
-       refreshTable();
-        } catch (IOException ex) {
-            Logger.getLogger(ListEmplacementsController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-                   } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("Vous devez selectionner un emplacement");
-            alert.show();
-        }
-                        });
+             });
 
                         HBox managebtn = new HBox(btnModifier,btnsupp);
                         managebtn.setStyle("-fx-alignment:center");
@@ -258,6 +212,34 @@ if (emplacementTable.getSelectionModel().getSelectedItem() != null) {
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         stage.close();
         
+    }
+
+    @FXML
+    private void getAddTable(MouseEvent event) {
+         try {
+            Parent parent = FXMLLoader.load(getClass().getResource("/GUI/ListTables.fxml"));
+            Scene scene = new Scene(parent);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(ListEmplacementsController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void btnreserver(MouseEvent event) {
+        try {
+            Parent parent = FXMLLoader.load(getClass().getResource("/GUI/ListReservation.fxml"));
+            Scene scene = new Scene(parent); // stage fiha scene
+           Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(ListReservationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
   

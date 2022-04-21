@@ -67,7 +67,7 @@ public class EmplacementService implements IEmplacement<Emplacement> {
     @Override
     public void modifierEmplacement(Emplacement e, int id) throws SQLException {
        
-        String req = "UPDATE emplacement SET   type_emplacement = ?, description = ?  where id_emplacement = " + id;
+        String req = "UPDATE emplacement SET   type_emplacement = ?, description = ?  where id_emplacement=" + id;
         PreparedStatement pre = connexion.prepareStatement(req);
       
         pre.setString(1, e.getType_emplacement());
@@ -80,10 +80,15 @@ public class EmplacementService implements IEmplacement<Emplacement> {
     //***************sup**************
     @Override
     public void deleteEmplacement(int id) throws SQLException {
-        String sql = "DELETE FROM emplacement WHERE id_emplacement ="+id;
-        PreparedStatement stat= connexion.prepareStatement(sql);
-       stat.executeUpdate();
-        System.out.println("emplacement supprime avec succes");
+         String req = "DELETE FROM emplacement WHERE id_emplacement = "+ id;
+        stm = connexion.createStatement();
+        stm.executeUpdate(req);
+    }
+    
+    public void deleteEmplacementParType(String type) throws SQLException {
+         String req = "DELETE FROM emplacement WHERE type_emplacement = "+ type;
+        stm = connexion.createStatement();
+        stm.executeUpdate(req);
     }
 
     @Override

@@ -35,6 +35,8 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
+import javax.swing.JOptionPane;
+import services.ReservationService;
 import utils.MyDB;
 
 /**
@@ -46,8 +48,6 @@ public class ListReservationController implements Initializable {
 
       @FXML
     private TableView<Reservation> ReservationTable;
-    @FXML
-    private TableColumn<Reservation, String> vueColl;
     @FXML
     private TableColumn<Reservation, Integer> phoneColl;
     @FXML
@@ -61,11 +61,10 @@ public class ListReservationController implements Initializable {
     @FXML
     private Button close;
     
-      String query = null;
+   String query = null;
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
-    Reservation tab = null;
     
     ObservableList<Reservation> listereservtion = FXCollections.observableArrayList();
   
@@ -79,15 +78,14 @@ public class ListReservationController implements Initializable {
          Connection con = MyDB.getInstance().getConnexion();
         ResultSet rs = con.createStatement().executeQuery("SELECT * FROM `reservation`");
         while(rs.next()){
-        listereservtion.add(new Reservation(rs.getString("tab_resv"),rs.getInt("phone_resv"),rs.getString("email_resv")
-                        ,rs.getDate("date_resv") ,rs.getDate("end_resv")
+        listereservtion.add(new Reservation(rs.getInt("id_resv"),rs.getInt("phone_resv"),rs.getString("email_resv"),rs.getString("tab_resv")
+                         ,rs.getDate("end_resv"),rs.getDate("date_resv")
         ));
         }
         
         } catch (SQLException ex) {
-            Logger.getLogger(ListTablesController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ListReservationController.class.getName()).log(Level.SEVERE, null, ex);
         }
-            vueColl.setCellValueFactory(new PropertyValueFactory<Reservation,String>("tab_resv"));
             phoneColl.setCellValueFactory(new PropertyValueFactory<Reservation,Integer>("phone_resv"));   
             mailColl.setCellValueFactory(new PropertyValueFactory<Reservation,String>("email_resv"));
              debutColl.setCellValueFactory(new PropertyValueFactory<Reservation,Date>("date_resv"));
@@ -113,22 +111,24 @@ public class ListReservationController implements Initializable {
                          Button btnsupp = new Button("Supprimer");
 
                   
-                   /*     btnsupp.setOnMouseClicked((MouseEvent event) -> {
-                            try{
-                               emplacement = emplacementTable.getSelectionModel().getSelectedItem();
-                                query = "DELETE FROM `emplacement` WHERE id_emplacement="+emplacement.getId_emplacement();
-                              Connection con = MyDB.getInstance().getConnexion();
-                                  preparedStatement = connection.prepareStatement(query);
-                                preparedStatement.execute();
-                               
-                       
-                                
-                           } catch (SQLException ex) {
-                                Logger.getLogger(ListEmplacementsController.class.getName()).log(Level.SEVERE, null, ex);
-                            }
+                        btnsupp.setOnMouseClicked((MouseEvent event) -> {
+                                        ReservationService T = new ReservationService();
+                            System.out.println(ReservationTable.getSelectionModel().getSelectedItem().getId_resv());
+       try{
+                                     T.deleteResv(ReservationTable.getSelectionModel().getSelectedItem().getId_resv());
+                                       
+                                       
+           JOptionPane.showMessageDialog(null, "Reservation supprimée");
+           Reservation selectedItem = ReservationTable.getSelectionModel().getSelectedItem();
+            ReservationTable.getItems().remove(selectedItem);       
+   } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "error"+e.getMessage());
+
+        }
                             
                
                         });
+                        /*
                         btnModifier.setOnMouseClicked((MouseEvent event) -> {
                             
                             emplacement = emplacementTable.getSelectionModel().getSelectedItem();
@@ -190,7 +190,7 @@ public class ListReservationController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(ListTablesController.class.getName()).log(Level.SEVERE, null, ex);
         }
-            vueColl.setCellValueFactory(new PropertyValueFactory<Reservation,String>("tab_resv"));
+          
             phoneColl.setCellValueFactory(new PropertyValueFactory<Reservation,Integer>("phone_resv"));   
             mailColl.setCellValueFactory(new PropertyValueFactory<Reservation,String>("email_resv"));
              debutColl.setCellValueFactory(new PropertyValueFactory<Reservation,Date>("date_resv"));
