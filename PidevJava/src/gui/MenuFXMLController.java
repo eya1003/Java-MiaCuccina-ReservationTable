@@ -10,6 +10,7 @@ import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -18,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import services.ReservationService;
 
@@ -28,13 +30,9 @@ import services.ReservationService;
  */
 public class MenuFXMLController implements Initializable {
 
-    @FXML
     private TextField tfphone;
-    @FXML
     private TextField tfadresse;
-    @FXML
     private DatePicker tdatedebut;
-    @FXML
     private DatePicker tdatefin;
 
     /**
@@ -51,7 +49,6 @@ public class MenuFXMLController implements Initializable {
         stage.close();
     }
 
-    @FXML
     private void save(MouseEvent event) {
           String addr = tfadresse.getText();
         try {
@@ -82,11 +79,11 @@ public class MenuFXMLController implements Initializable {
                 }
     
 
-    @FXML
     private void clean(MouseEvent event) {
          tfphone.setText(null);
         tfadresse.setText(null);
         
     }
+
     
 }
