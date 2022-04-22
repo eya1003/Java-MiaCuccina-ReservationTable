@@ -196,5 +196,9 @@ public class AllFXMLController implements Initializable {
           Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
+
+    @FXML
+    private void btnListecategorie(MouseEvent event) {
+    }
     
 }

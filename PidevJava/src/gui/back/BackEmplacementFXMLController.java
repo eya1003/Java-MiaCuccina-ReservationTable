@@ -199,7 +199,7 @@ Emplacement e = emplacementTable.getSelectionModel().getSelectedItem();
             stage.initStyle(StageStyle.UTILITY);
             stage.show();
         } catch (IOException ex) {
-            Logger.getLogger(ListReservationController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AllFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -213,7 +213,7 @@ Emplacement e = emplacementTable.getSelectionModel().getSelectedItem();
             stage.initStyle(StageStyle.UTILITY);
             stage.show();
         } catch (IOException ex) {
-            Logger.getLogger(ListReservationController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AllFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -227,7 +227,7 @@ Emplacement e = emplacementTable.getSelectionModel().getSelectedItem();
             stage.initStyle(StageStyle.UTILITY);
             stage.show();
         } catch (IOException ex) {
-            Logger.getLogger(ListReservationController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AllFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -241,7 +241,7 @@ Emplacement e = emplacementTable.getSelectionModel().getSelectedItem();
             stage.initStyle(StageStyle.UTILITY);
             stage.show();
         } catch (IOException ex) {
-            Logger.getLogger(ListReservationController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AllFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -255,7 +255,7 @@ Emplacement e = emplacementTable.getSelectionModel().getSelectedItem();
             stage.initStyle(StageStyle.UTILITY);
             stage.show();
         } catch (IOException ex) {
-            Logger.getLogger(ListReservationController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AllFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -287,6 +287,24 @@ Emplacement e = emplacementTable.getSelectionModel().getSelectedItem();
     private void close(MouseEvent event) {
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    private void btnListeCategorie(MouseEvent event) {
+    }
+
+    @FXML
+    private void btnAjouter(MouseEvent event) {
+         try {
+            Parent parent = FXMLLoader.load(getClass().getResource("/GUI/bak/BackAjoutEmplacement.fxml"));
+            Scene scene = new Scene(parent);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AllFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

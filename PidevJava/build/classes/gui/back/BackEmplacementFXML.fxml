@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
@@ -14,7 +15,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.back.BackEmplacementFXMLController">
    <children>
-      <VBox layoutY="-4.0" prefHeight="632.0" prefWidth="235.0" style="-fx-background-color: #B42506;">
+      <VBox layoutY="-4.0" prefHeight="632.0" prefWidth="235.0" style="-fx-background-color: #39B8E3;">
          <children>
             <ImageView fitHeight="106.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true">
                <VBox.margin>
@@ -24,9 +25,9 @@
                   <Image url="@../../img/logo3.png" />
                </image>
             </ImageView>
-            <Button mnemonicParsing="false" onMouseClicked="#btndashboardd" prefHeight="6.0" prefWidth="169.0" style="-fx-background-color: #B42506;" text="Dashboard">
+            <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onMouseClicked="#btndashboardd" prefHeight="32.0" prefWidth="140.0" style="-fx-background-color: #39B8E3;" text="Dashboard" textAlignment="CENTER" textFill="#fcfcfc">
                <graphic>
-                  <ImageView fitHeight="24.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="23.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../img/55003.png" />
                      </image>
@@ -39,7 +40,7 @@
                   <Font name="System Bold Italic" size="12.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onMouseClicked="#btnListeTable" prefHeight="44.0" prefWidth="153.0" style="-fx-background-color: #B42506;" text="Liste Tables ">
+            <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onMouseClicked="#btnListeTable" prefHeight="44.0" prefWidth="153.0" style="-fx-background-color: #39B8E3;" text="Liste Tables " textAlignment="CENTER" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="33.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -54,7 +55,7 @@
                   <Insets left="-5.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onMouseClicked="#btnListeEpmlacement" prefHeight="44.0" prefWidth="168.0" style="-fx-background-color: #B42506;" text="Liste Emplacement">
+            <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onMouseClicked="#btnListeEpmlacement" prefHeight="44.0" prefWidth="183.0" style="-fx-background-color: #39B8E3;" text="Liste Emplacement" textAlignment="CENTER" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="33.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -66,7 +67,7 @@
                   <Font name="System Bold" size="11.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onMouseClicked="#btnListeReservation" prefHeight="44.0" prefWidth="168.0" style="-fx-background-color: #B42506;" text="Liste Reservations ">
+            <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onMouseClicked="#btnListeReservation" prefHeight="44.0" prefWidth="179.0" style="-fx-background-color: #39B8E3;" text="Liste Reservations " textAlignment="CENTER" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="33.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -81,7 +82,7 @@
                   <Font name="System Bold" size="11.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onMouseClicked="#btnlListeEvent" prefHeight="44.0" prefWidth="157.0" style="-fx-background-color: #B42506;" text="Liste Evenements">
+            <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onMouseClicked="#btnlListeEvent" prefHeight="44.0" prefWidth="166.0" style="-fx-background-color: #39B8E3;" text="Liste Evenements" textAlignment="CENTER" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="33.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -96,7 +97,7 @@
                   <Font name="System Bold" size="10.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onMouseClicked="#btnListePanier" prefHeight="44.0" prefWidth="135.0" style="-fx-background-color: #B42506;" text="Liste Panier">
+            <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onMouseClicked="#btnListePanier" prefHeight="44.0" prefWidth="149.0" style="-fx-background-color: #39B8E3;" text="Liste Panier" textAlignment="CENTER" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="33.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -111,7 +112,7 @@
                   <Font name="System Bold Italic" size="11.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onMouseClicked="#btnListeCommandes" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #B42506;" text="Liste Commandes">
+            <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onMouseClicked="#btnListeCommandes" prefHeight="44.0" prefWidth="174.0" style="-fx-background-color: #39B8E3;" text="Liste Commandes" textAlignment="CENTER" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="33.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -126,7 +127,7 @@
                   <Font name="System Bold" size="10.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onMouseClicked="#btnListeProduit" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #B42506;" text="Liste produit">
+            <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onMouseClicked="#btnListeProduit" prefHeight="44.0" prefWidth="149.0" style="-fx-background-color: #39B8E3;" text="Liste produit" textAlignment="CENTER" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="33.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -141,7 +142,19 @@
                   <Font name="System Bold Italic" size="10.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onMouseClicked="#btnListeLivreur" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #B42506;" text="Liste Livreur">
+            <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onMouseClicked="#btnListeCategorie" prefHeight="43.0" prefWidth="162.0" style="-fx-background-color: #39B8E3;" text="Liste categories" textAlignment="CENTER" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="33.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/1474613.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="System Bold Italic" size="10.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onMouseClicked="#btnListeLivreur" prefHeight="44.0" prefWidth="150.0" style="-fx-background-color: #39B8E3;" text="Liste Livreur" textAlignment="CENTER" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="33.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -156,7 +169,7 @@
                   <Font name="System Bold" size="10.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onMouseClicked="#btnListeLivraison" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #B42506;" text="Liste Livraison">
+            <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onMouseClicked="#btnListeLivraison" prefHeight="44.0" prefWidth="161.0" style="-fx-background-color: #39B8E3;" text="Liste Livraison" textAlignment="CENTER" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="33.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -171,9 +184,9 @@
                   <Font name="System Bold Italic" size="10.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onMouseClicked="#btnListeUser" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #B42506;" text="Liste Utilisateurs">
+            <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onMouseClicked="#btnListeUser" prefHeight="44.0" prefWidth="168.0" style="-fx-background-color: #39B8E3;" text="Liste Utilisateurs" textAlignment="CENTER" textFill="WHITE">
                <graphic>
-                  <ImageView fitHeight="33.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="26.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../img/1200px-User_font_awesome.svg.png" />
                      </image>
@@ -188,19 +201,43 @@
             </Button>
          </children>
       </VBox>
-      <Pane layoutX="331.0" layoutY="41.0" prefHeight="3.0" prefWidth="624.0" style="-fx-background-color: #B42506;" AnchorPane.rightAnchor="0.0" />
+      <Pane layoutX="331.0" layoutY="41.0" prefHeight="3.0" prefWidth="624.0" style="-fx-background-color: #39B8E3;" AnchorPane.bottomAnchor="584.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="41.0" />
       <Button layoutX="812.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#close" styleClass="add-btn" stylesheets="@../../Values/style.css" text="X" />
       <Text fontSmoothingType="LCD" layoutX="349.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des emplacements" textAlignment="CENTER" wrappingWidth="359.41796875">
          <font>
             <Font name="Segoe Print Bold" size="42.0" />
          </font>
       </Text>
-      <TableView fx:id="emplacementTable" layoutX="243.0" layoutY="229.0" prefHeight="290.0" prefWidth="590.0" style="-fx-background-color: #B42506;">
+      <TableView fx:id="emplacementTable" layoutX="243.0" layoutY="188.0" prefHeight="290.0" prefWidth="590.0" stylesheets="@../../Values/style.css">
          <columns>
             <TableColumn fx:id="vueColl" maxWidth="200.0" prefWidth="200.0" style="-fx-alignment: center;" text="Vues" />
             <TableColumn fx:id="descriptionColl" maxWidth="300.0" prefWidth="201.0" style="-fx-alignment: center;" text="Descriptions" />
             <TableColumn fx:id="actionsColl" maxWidth="200.0" prefWidth="200.0" style="-fx-alignment: center;" text="Actions" />
          </columns>
       </TableView>
+      <VBox layoutX="286.0" layoutY="492.0" prefHeight="98.0" prefWidth="466.0">
+         <children>
+            <VBox prefHeight="77.0" prefWidth="475.0">
+               <children>
+                  <Button mnemonicParsing="false" onMouseClicked="#btnAjouter" prefHeight="43.0" prefWidth="135.0" style="-fx-background-color: #39B8E3;" stylesheets="@../../Values/style.css" text="AJOUTER">
+                     <styleClass>
+                        <String fx:value="search-button" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                     <VBox.margin>
+                        <Insets left="180.0" top="20.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </children></VBox>
+      <Button layoutX="783.0" layoutY="56.0" mnemonicParsing="false" onMouseClicked="#btnrefresh" prefHeight="16.0" prefWidth="59.0" style="-fx-background-color: #39B8E3;" stylesheets="@../../Values/style.css" text="Refresh">
+         <styleClass>
+            <String fx:value="decrement-button" />
+            <String fx:value="shadow" />
+            <String fx:value="right-bar" />
+            <String fx:value="add-btn" />
+         </styleClass>
+      </Button>
    </children>
 </AnchorPane>
