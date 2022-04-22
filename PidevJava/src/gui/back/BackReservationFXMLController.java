@@ -17,6 +17,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -27,6 +29,15 @@ import javafx.stage.StageStyle;
  * @author eyaam
  */
 public class BackReservationFXMLController implements Initializable {
+
+    @FXML
+    private TableView<?> emplacementTable;
+    @FXML
+    private TableColumn<?, ?> vueColl;
+    @FXML
+    private TableColumn<?, ?> descriptionColl;
+    @FXML
+    private TableColumn<?, ?> actionsColl;
 
     /**
      * Initializes the controller class.
@@ -114,6 +125,24 @@ public class BackReservationFXMLController implements Initializable {
     private void close(MouseEvent event) {
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    private void btnListeCategorie(MouseEvent event) {
+    }
+
+    @FXML
+    private void btnAjouter(MouseEvent event) {
+        try {
+            Parent parent = FXMLLoader.load(getClass().getResource("/GUI/front/FrontReservationFXML.fxml"));
+            Scene scene = new Scene(parent);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(ListReservationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

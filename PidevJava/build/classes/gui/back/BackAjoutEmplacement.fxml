@@ -210,7 +210,7 @@
             <Font name="Segoe Print Bold" size="42.0" />
          </font>
       </Text>
-      <VBox layoutX="312.0" layoutY="254.0" prefHeight="324.0" prefWidth="469.0">
+      <VBox layoutX="270.0" layoutY="204.0" prefHeight="417.0" prefWidth="486.0">
          <children>
             <VBox prefHeight="102.0" prefWidth="469.0">
                <children>
@@ -219,7 +219,7 @@
                         <Font name="Segoe Print Bold" size="28.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="41.0" prefWidth="208.0" promptText="Entrer la nouvelle vue">
+                  <TextField fx:id="tvue" prefHeight="41.0" prefWidth="208.0" promptText="Entrer la nouvelle vue">
                      <VBox.margin>
                         <Insets left="120.0" right="150.0" top="-50.0" />
                      </VBox.margin>
@@ -233,27 +233,35 @@
                         <Font name="Segoe Print Bold" size="25.0" />
                      </font>
                   </Label>
-                  <TextArea prefHeight="200.0" prefWidth="200.0" promptText="Ecriver la description du vue">
+                  <TextArea fx:id="tdescription" prefHeight="200.0" prefWidth="200.0" promptText="Ecriver la description du vue">
                      <VBox.margin>
                         <Insets left="170.0" top="-50.0" />
                      </VBox.margin>
                   </TextArea>
                </children>
             </VBox>
-            <VBox prefHeight="60.0" prefWidth="456.0">
+            <VBox prefHeight="41.0" prefWidth="486.0">
                <children>
-                  <Button mnemonicParsing="false" text="Button">
-                     <VBox.margin>
-                        <Insets left="200.0" top="10.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button mnemonicParsing="false" prefHeight="57.0" prefWidth="111.0" style="-fx-background-color: #39B8E3;" stylesheets="@../../Values/style.css" text="Enregistrer">
+                  <Button mnemonicParsing="false" onMouseClicked="#save" prefHeight="57.0" prefWidth="111.0" style="-fx-background-color: #39B8E3;" stylesheets="@../../Values/style.css" text="Enregistrer">
                      <styleClass>
                         <String fx:value="add-btn" />
                         <String fx:value="shadow" />
                      </styleClass>
                      <VBox.margin>
-                        <Insets />
+                        <Insets left="250.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox prefHeight="55.0" prefWidth="537.0">
+               <children>
+                  <Button mnemonicParsing="false" onMouseClicked="#clean" prefHeight="45.0" prefWidth="112.0" style="-fx-background-color: #39B8E3;" stylesheets="@../../Values/style.css" text="Effacer">
+                     <styleClass>
+                        <String fx:value="add-btn" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                     <VBox.margin>
+                        <Insets left="250.0" top="10.0" />
                      </VBox.margin>
                   </Button>
                </children>
