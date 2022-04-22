@@ -5,21 +5,40 @@
  */
 package gui.back;
 
+import entities.Emplacement;
+import gui.ListEmplacementsController;
 import gui.ListReservationController;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Callback;
+import javax.swing.JOptionPane;
+import services.EmplacementService;
+import utils.MyDB;
 
 /**
  * FXML Controller class
@@ -28,13 +47,147 @@ import javafx.stage.StageStyle;
  */
 public class BackEmplacementFXMLController implements Initializable {
 
+  
+      @FXML
+    private TableView<Emplacement> emplacementTable;
+    @FXML
+    private TableColumn<Emplacement, String> vueColl;
+    @FXML
+    private TableColumn<Emplacement, String> descriptionColl;
+    @FXML
+    private TableColumn<Emplacement, String> actionsColl;
+    
+     String query = null;
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    ResultSet resultSet = null;
+    
+    ObservableList<Emplacement> EmplacementListe = FXCollections.observableArrayList();
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        try{
+        Connection con = MyDB.getInstance().getConnexion();
+        ResultSet rs = con.createStatement().executeQuery("SELECT * FROM emplacement");
+            
+        while(rs.next()){
+        EmplacementListe.add(new Emplacement(rs.getInt("id_emplacement"),rs.getString("type_emplacement"),rs.getString("Description")));
+        }
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(ListEmplacementsController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            vueColl.setCellValueFactory(new PropertyValueFactory<Emplacement,String>("type_emplacement"));
+            descriptionColl.setCellValueFactory(new PropertyValueFactory<Emplacement,String>("Description"));  
+            emplacementTable.setItems(EmplacementListe);
+            
+              
+       
+            
+             //add cell of button edit 
+         Callback<TableColumn<Emplacement, String>, TableCell<Emplacement, String>> cellFoctory = (TableColumn<Emplacement, String> param) -> {
+            // make cell containing buttons
+            final TableCell<Emplacement, String> cell = new TableCell<Emplacement, String>() {
+                @Override
+                public void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    //that cell created only on non-empty rows
+                    if (empty) {
+                        setGraphic(null);
+                        setText(null);
+
+                    } else {
+
+                        Button btnModifier = new Button("Modifier");
+                         Button btnsupp = new Button("Supprimer");
+
+                  //supprimer
+                        btnsupp.setOnMouseClicked((MouseEvent event) -> {
+              
+                            EmplacementService T = new EmplacementService();
+
+
+                             System.out.println(emplacementTable.getSelectionModel().getSelectedItem().getId_emplacement());
+       try{
+//                                     T.deleteEmplacement(emplacementTable.getSelectionModel().getSelectedItem().getId_emplacement());
+//                                       
+//                                       
+//           JOptionPane.showMessageDialog(null, "Data telah terhapus");
+//           Emplacement selectedItem = emplacementTable.getSelectionModel().getSelectedItem();
+//            emplacementTable.getItems().remove(selectedItem);       
+Emplacement e = emplacementTable.getSelectionModel().getSelectedItem();
+                                query = "DELETE FROM `emplacement` WHERE id_emplacement  ="+e.getId_emplacement();
+                                connection = MyDB.getInstance().getConnexion();
+                                preparedStatement = connection.prepareStatement(query);
+                                preparedStatement.execute();
+   } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "error"+e.getMessage());
+
+        }
+
+                        }); 
+                 
+                        
+                        
+                        
+                        
+                        ////modifier
+                        btnModifier.setOnMouseClicked((MouseEvent event) -> {                       
+                if (emplacementTable.getSelectionModel().getSelectedItem() != null) {
+            EmplacementService updateSer = new EmplacementService();
+                 
+                    }
+
+             });
+
+                        HBox managebtn = new HBox(btnModifier,btnsupp);
+                        managebtn.setStyle("-fx-alignment:center");
+                        HBox.setMargin(btnModifier, new Insets(2, 2, 0, 3));
+                         HBox.setMargin(btnsupp, new Insets(2, 2, 0, 3));
+
+                        setGraphic(managebtn);
+
+                        setText(null);
+
+                    }
+                }
+
+            };
+
+            return cell;
+        };
+         actionsColl.setCellFactory(cellFoctory);
+         emplacementTable.setItems(EmplacementListe);
+         
+    }
+    
+    
+    
+    private void refreshTable() {
+        try {
+            
+           Connection con = MyDB.getInstance().getConnexion();
+            EmplacementListe.clear();
+        ResultSet rs = con.createStatement().executeQuery("SELECT * FROM emplacement");
+        while(rs.next()){
+        EmplacementListe.add(new Emplacement(rs.getString("type_emplacement"),rs.getString("Description")));
+        }
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(ListEmplacementsController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+            vueColl.setCellValueFactory(new PropertyValueFactory<Emplacement,String>("type_emplacement"));
+            descriptionColl.setCellValueFactory(new PropertyValueFactory<Emplacement,String>("Description"));  
+            emplacementTable.setItems(EmplacementListe);
+            
+        
+    }
         //
-    }    
+    
 
     @FXML
     private void btndashboardd(MouseEvent event) {
