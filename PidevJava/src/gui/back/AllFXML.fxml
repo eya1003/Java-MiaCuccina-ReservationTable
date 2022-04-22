@@ -189,7 +189,7 @@
             </VBox>
          </children>
       </VBox>
-      <Pane layoutX="217.0" layoutY="43.0" prefHeight="3.0" prefWidth="533.0" style="-fx-background-color: #B42506;" AnchorPane.leftAnchor="217.0" AnchorPane.rightAnchor="0.0" />
+      <Pane layoutX="217.0" layoutY="43.0" prefHeight="3.0" prefWidth="533.0" style="-fx-background-color: #B42506;" AnchorPane.bottomAnchor="560.0" AnchorPane.leftAnchor="217.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="43.0" />
       <ImageView fitHeight="252.0" fitWidth="321.0" layoutX="375.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../img/logo3.png" />
