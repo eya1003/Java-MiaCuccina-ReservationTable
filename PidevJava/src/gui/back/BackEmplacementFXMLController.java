@@ -50,7 +50,6 @@ public class BackEmplacementFXMLController implements Initializable {
   
       @FXML
     private TableView<Emplacement> emplacementTable;
-    @FXML
     private TableColumn<Emplacement, String> vueColl;
     @FXML
     private TableColumn<Emplacement, String> descriptionColl;
@@ -293,10 +292,9 @@ Emplacement e = emplacementTable.getSelectionModel().getSelectedItem();
     private void btnListeCategorie(MouseEvent event) {
     }
 
-    @FXML
     private void btnAjouter(MouseEvent event) {
          try {
-            Parent parent = FXMLLoader.load(getClass().getResource("/GUI/bak/BackAjoutEmplacement.fxml"));
+            Parent parent = FXMLLoader.load(getClass().getResource("/GUI/back/BackAjoutEmplacement.fxml"));
             Scene scene = new Scene(parent);
             Stage stage = new Stage();
             stage.setScene(scene);
@@ -304,6 +302,58 @@ Emplacement e = emplacementTable.getSelectionModel().getSelectedItem();
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(AllFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void btnrefresh(MouseEvent event) {
+        try {
+            
+           Connection con = MyDB.getInstance().getConnexion();
+            EmplacementListe.clear();
+        ResultSet rs = con.createStatement().executeQuery("SELECT * FROM emplacement");
+        while(rs.next()){
+        EmplacementListe.add(new Emplacement(rs.getString("type_emplacement"),rs.getString("Description")));
+        }
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(ListEmplacementsController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+            vueColl.setCellValueFactory(new PropertyValueFactory<Emplacement,String>("type_emplacement"));
+            descriptionColl.setCellValueFactory(new PropertyValueFactory<Emplacement,String>("Description"));  
+            emplacementTable.setItems(EmplacementListe);
+            
+    }
+
+    @FXML
+    private void getadd(MouseEvent event) {
+    }
+
+    @FXML
+    private void sort(MouseEvent event) {
+          
+        try {
+            EmplacementListe.clear();
+            
+            query = "SELECT * FROM `emplacement` ORDER BY type_emplacement  ";
+            preparedStatement = connection.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+            
+            while (resultSet.next()){
+                EmplacementListe.add(new  Emplacement (
+                        resultSet.getInt("id_emplacemennt"),
+                        resultSet.getString("type_emplacement"),
+                        resultSet.getString("Description")
+                        ));
+                emplacementTable.setItems(EmplacementListe);
+                
+            }
+            System.out.println("sort execute");
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BackEmplacementFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

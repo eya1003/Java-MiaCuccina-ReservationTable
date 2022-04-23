@@ -208,11 +208,13 @@
             <Font name="Segoe Print Bold" size="42.0" />
          </font>
       </Text>
-      <TableView fx:id="emplacementTable" layoutX="253.0" layoutY="198.0" prefHeight="226.0" prefWidth="590.0" stylesheets="@../../Values/style.css">
+      <TableView fx:id="ReservationTable" layoutX="253.0" layoutY="198.0" prefHeight="226.0" prefWidth="611.0" stylesheets="@../../Values/style.css">
          <columns>
-            <TableColumn fx:id="vueColl" maxWidth="200.0" prefWidth="200.0" style="-fx-alignment: center;" text="Vues" />
-            <TableColumn fx:id="descriptionColl" maxWidth="300.0" prefWidth="201.0" style="-fx-alignment: center;" text="Descriptions" />
-            <TableColumn fx:id="actionsColl" maxWidth="200.0" prefWidth="200.0" style="-fx-alignment: center;" text="Actions" />
+            <TableColumn fx:id="phoneColl" maxWidth="200.0" prefWidth="100.0" style="-fx-alignment: center;" text="Phone" />
+            <TableColumn fx:id="mailColl" maxWidth="150.0" prefWidth="200.0" style="-fx-alignment: center;" text="Email" />
+            <TableColumn fx:id="debutColl" maxWidth="200.0" prefWidth="100.0" style="-fx-alignment: center;" text="Date début" />
+            <TableColumn fx:id="finColl" maxWidth="200.0" prefWidth="100.0" style="-fx-alignment: center;" text="Date fin" />
+            <TableColumn fx:id="actionColl" maxWidth="200.0" prefWidth="200.0" style="-fx-alignment: center;" text="Actions" />
          </columns>
       </TableView>
       <VBox layoutX="280.0" layoutY="502.0" prefHeight="100.0" prefWidth="438.0">
@@ -229,5 +231,13 @@
          </children>
       </VBox>
       <Pane layoutX="227.0" layoutY="48.0" prefHeight="3.0" prefWidth="624.0" style="-fx-background-color: #39B8E3;" />
+      <Button layoutX="793.0" layoutY="66.0" mnemonicParsing="false" onMouseClicked="#btnrefresh" prefHeight="16.0" prefWidth="59.0" style="-fx-background-color: #39B8E3;" stylesheets="@../../Values/style.css" text="Refresh">
+         <styleClass>
+            <String fx:value="decrement-button" />
+            <String fx:value="shadow" />
+            <String fx:value="right-bar" />
+            <String fx:value="add-btn" />
+         </styleClass>
+      </Button>
    </children>
 </AnchorPane>

@@ -210,8 +210,8 @@
       </Text>
       <TableView fx:id="emplacementTable" layoutX="243.0" layoutY="188.0" prefHeight="290.0" prefWidth="590.0" stylesheets="@../../Values/style.css">
          <columns>
-            <TableColumn fx:id="vueColl" maxWidth="200.0" prefWidth="200.0" style="-fx-alignment: center;" text="Vues" />
-            <TableColumn fx:id="descriptionColl" maxWidth="300.0" prefWidth="201.0" style="-fx-alignment: center;" text="Descriptions" />
+            <TableColumn fx:id="emplacementTable" maxWidth="300.0" prefWidth="100.0" style="-fx-alignment: center;" text="Vue" />
+            <TableColumn fx:id="descriptionColl" maxWidth="300.0" prefWidth="250.0" style="-fx-alignment: center;" text="Description" />
             <TableColumn fx:id="actionsColl" maxWidth="200.0" prefWidth="200.0" style="-fx-alignment: center;" text="Actions" />
          </columns>
       </TableView>
@@ -219,7 +219,7 @@
          <children>
             <VBox prefHeight="77.0" prefWidth="475.0">
                <children>
-                  <Button mnemonicParsing="false" onMouseClicked="#btnAjouter" prefHeight="43.0" prefWidth="135.0" style="-fx-background-color: #39B8E3;" stylesheets="@../../Values/style.css" text="AJOUTER">
+                  <Button mnemonicParsing="false" onMouseClicked="#getadd" prefHeight="43.0" prefWidth="135.0" style="-fx-background-color: #39B8E3;" stylesheets="@../../Values/style.css" text="AJOUTER">
                      <styleClass>
                         <String fx:value="search-button" />
                         <String fx:value="shadow" />
@@ -237,6 +237,12 @@
             <String fx:value="shadow" />
             <String fx:value="right-bar" />
             <String fx:value="add-btn" />
+         </styleClass>
+      </Button>
+      <Button layoutX="752.0" layoutY="107.0" mnemonicParsing="false" onMouseClicked="#sort" prefHeight="42.0" prefWidth="73.0" style="-fx-background-color: #39B8E3;" stylesheets="@../../Values/style.css" text="Trie">
+         <styleClass>
+            <String fx:value="add-btn" />
+            <String fx:value="shadow" />
          </styleClass>
       </Button>
    </children>
