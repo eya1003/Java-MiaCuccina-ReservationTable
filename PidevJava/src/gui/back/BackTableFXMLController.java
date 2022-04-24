@@ -117,6 +117,7 @@ public class BackTableFXMLController implements Initializable {
             JOptionPane.showMessageDialog(null, "error"+e.getMessage());
 
         }
+                           tabletable.refresh();
                             
                
                         });
@@ -124,32 +125,7 @@ public class BackTableFXMLController implements Initializable {
                         
                         btnModifierTab.setOnMouseClicked((MouseEvent event) -> {
                          
-            int index = tabletable.getSelectionModel().getSelectedItem().getId_tab();
-                            TableService T = new TableService();
-           int stok = tabletable.getSelectionModel().getSelectedItem().getStock_tab();
-           int chaises = tabletable.getSelectionModel().getSelectedItem().getNb_chaise_tab();
-           Table t=new Table(a.toString(), stok,chaises);
-        try {
-            T.modifierTab(t, index);
-        } catch (SQLException ex) {
-            Logger.getLogger(ListTablesController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         table.clear();
-          try{
-        Connection con = MyDB.getInstance().getConnexion();
-        ResultSet rs = con.createStatement().executeQuery("SELECT * FROM emplacement");
-        while(rs.next()){
-        table.add(new Table(rs.getInt(1),rs.getString("emp"),rs.getInt("nb_chaise_tab"),rs.getInt("stock_tab")));
-        }
-        
-        } catch (SQLException ex) {
-            Logger.getLogger(ListTablesController.class.getName()).log(Level.SEVERE, null, ex);
-        }        
-              idColl.setCellValueFactory(new PropertyValueFactory<Table,Integer>("id_tab"));
-            vueColl1.setCellValueFactory(new PropertyValueFactory<Emplacement,String>("emp"));
-            nbChaiseColl.setCellValueFactory(new PropertyValueFactory<Table,Integer>("nb_chaise_tab"));   
-            stockcoll.setCellValueFactory(new PropertyValueFactory<Table,Integer>("stock_tab"));
-            tabletable.setItems(table);
+           
                         });
 
                         HBox managebtn = new HBox(btnModifierTab,btnsupp);

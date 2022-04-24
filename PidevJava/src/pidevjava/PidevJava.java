@@ -10,51 +10,45 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import services.EmplacementService;
+import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
+import javafx.scene.control.Tooltip;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 /**
  *
  * @author macbook
  */
-public class PidevJava {
+public class PidevJava extends Application{
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-     /*   
-          EmplacementService sp = new EmplacementService();
-          Emplacement emp = new Emplacement("Vue sue dal","magnifique" );
-     try {
-            sp.ajouterEmplacement(emp);
-            System.out.println("ajout avec succes");
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        
-        try {
-            System.out.println(sp.afficherEmplacemennt());
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        
-       
-        try {
-            sp.modifierEmplacement(emp,112);
-            System.out.println("modifie avec succes");
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        
-       
-        
-       try {
-            sp.deleteEmplacement(105);
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
+ 
+ 
+	public void start(Stage primaryStage) {
+		 Pane root = new Pane();
+		 ObservableList<PieChart.Data> valueList = FXCollections.observableArrayList(
+				 new PieChart.Data("Nitrogen", 7809),
+				 new PieChart.Data("Oxygen", 2195),
+				 new PieChart.Data("Other", 93));
+				 PieChart pieChart = new PieChart(valueList);
+				 pieChart.setTitle("Air composition");
+				 pieChart.getData().forEach(data -> {
+				 String percentage = String.format("%.2f%%", (data.getPieValue() / 100));
+				 Tooltip toolTip = new Tooltip(percentage);
+				 Tooltip.install(data.getNode(), toolTip);
+				});
 
-*/
-    }
-    
-}
+		 //adding pieChart to the root.
+		 root.getChildren().addAll(pieChart);
+		 Scene scene = new Scene(root, 450, 450);
+		 primaryStage.setTitle("Pie Chart Demo");
+		 primaryStage.setScene(scene);
+		 primaryStage.show();
+		}
+		public static void main(String[] args) {
+		 launch(args);
+		 }
+	}

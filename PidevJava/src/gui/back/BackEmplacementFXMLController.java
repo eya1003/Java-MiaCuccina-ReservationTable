@@ -8,6 +8,7 @@ package gui.back;
 import entities.Emplacement;
 import gui.ListEmplacementsController;
 import gui.ListReservationController;
+import java.awt.Color;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -37,6 +38,13 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import javax.swing.JOptionPane;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.DefaultCategoryItemRenderer;
+import org.jfree.data.category.DefaultCategoryDataset;
 import services.EmplacementService;
 import utils.MyDB;
 
@@ -50,25 +58,25 @@ public class BackEmplacementFXMLController implements Initializable {
   
       @FXML
     private TableView<Emplacement> emplacementTable;
+      @FXML
     private TableColumn<Emplacement, String> vueColl;
     @FXML
     private TableColumn<Emplacement, String> descriptionColl;
     @FXML
     private TableColumn<Emplacement, String> actionsColl;
     
-     String query = null;
-    Connection connection = null;
-    PreparedStatement preparedStatement = null;
-    ResultSet resultSet = null;
+
     
     ObservableList<Emplacement> EmplacementListe = FXCollections.observableArrayList();
+    @FXML
+    private TableColumn<Emplacement, Integer> idColl;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try{
+         try{
         Connection con = MyDB.getInstance().getConnexion();
         ResultSet rs = con.createStatement().executeQuery("SELECT * FROM emplacement");
             
@@ -79,14 +87,12 @@ public class BackEmplacementFXMLController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(ListEmplacementsController.class.getName()).log(Level.SEVERE, null, ex);
         }
+         idColl.setCellValueFactory(new PropertyValueFactory<Emplacement,Integer>("id_emplacement"));
             vueColl.setCellValueFactory(new PropertyValueFactory<Emplacement,String>("type_emplacement"));
             descriptionColl.setCellValueFactory(new PropertyValueFactory<Emplacement,String>("Description"));  
             emplacementTable.setItems(EmplacementListe);
             
-              
-       
-            
-             //add cell of button edit 
+                //add cell of button edit 
          Callback<TableColumn<Emplacement, String>, TableCell<Emplacement, String>> cellFoctory = (TableColumn<Emplacement, String> param) -> {
             // make cell containing buttons
             final TableCell<Emplacement, String> cell = new TableCell<Emplacement, String>() {
@@ -105,29 +111,24 @@ public class BackEmplacementFXMLController implements Initializable {
 
                   //supprimer
                         btnsupp.setOnMouseClicked((MouseEvent event) -> {
-              
-                            EmplacementService T = new EmplacementService();
-
-
-                             System.out.println(emplacementTable.getSelectionModel().getSelectedItem().getId_emplacement());
-       try{
-//                                     T.deleteEmplacement(emplacementTable.getSelectionModel().getSelectedItem().getId_emplacement());
-//                                       
-//                                       
-//           JOptionPane.showMessageDialog(null, "Data telah terhapus");
-//           Emplacement selectedItem = emplacementTable.getSelectionModel().getSelectedItem();
-//            emplacementTable.getItems().remove(selectedItem);       
-Emplacement e = emplacementTable.getSelectionModel().getSelectedItem();
-                                query = "DELETE FROM `emplacement` WHERE id_emplacement  ="+e.getId_emplacement();
-                                connection = MyDB.getInstance().getConnexion();
-                                preparedStatement = connection.prepareStatement(query);
-                                preparedStatement.execute();
-   } catch (Exception e) {
+              EmplacementService T = new EmplacementService();
+                           try{
+                          T.deleteEmplacement(emplacementTable.getSelectionModel().getSelectedItem().getId_emplacement());
+                                       
+                                       
+           JOptionPane.showMessageDialog(null, "Table supprimée");
+           Emplacement selectedItem = emplacementTable.getSelectionModel().getSelectedItem();
+            emplacementTable.getItems().remove(selectedItem);       
+       } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "error"+e.getMessage());
 
         }
+                           emplacementTable.refresh();
+                         
 
-                        }); 
+        });
+
+                        
                  
                         
                         
@@ -160,7 +161,6 @@ Emplacement e = emplacementTable.getSelectionModel().getSelectedItem();
         };
          actionsColl.setCellFactory(cellFoctory);
          emplacementTable.setItems(EmplacementListe);
-         
     }
     
     
@@ -178,10 +178,13 @@ Emplacement e = emplacementTable.getSelectionModel().getSelectedItem();
         } catch (SQLException ex) {
             Logger.getLogger(ListEmplacementsController.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
+            idColl.setCellValueFactory(new PropertyValueFactory<Emplacement,Integer>("id_emplacement"));
             vueColl.setCellValueFactory(new PropertyValueFactory<Emplacement,String>("type_emplacement"));
             descriptionColl.setCellValueFactory(new PropertyValueFactory<Emplacement,String>("Description"));  
             emplacementTable.setItems(EmplacementListe);
+            
+            
+         
             
         
     }
@@ -331,30 +334,23 @@ Emplacement e = emplacementTable.getSelectionModel().getSelectedItem();
     }
 
     @FXML
-    private void sort(MouseEvent event) {
-          
+    private void stat(MouseEvent event) {
+      
+         
         try {
-            EmplacementListe.clear();
-            
-            query = "SELECT * FROM `emplacement` ORDER BY type_emplacement  ";
-            preparedStatement = connection.prepareStatement(query);
-            resultSet = preparedStatement.executeQuery();
-            
-            while (resultSet.next()){
-                EmplacementListe.add(new  Emplacement (
-                        resultSet.getInt("id_emplacemennt"),
-                        resultSet.getString("type_emplacement"),
-                        resultSet.getString("Description")
-                        ));
-                emplacementTable.setItems(EmplacementListe);
-                
-            }
-            System.out.println("sort execute");
-            
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(BackEmplacementFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            Parent parent = FXMLLoader.load(getClass().getResource("/GUI/back/StatistiqueFXML.fxml"));
+            Scene scene = new Scene(parent);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AllFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
+
+   
+    
     
 }

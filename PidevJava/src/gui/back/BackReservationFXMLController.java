@@ -120,34 +120,15 @@ public class BackReservationFXMLController implements Initializable {
             JOptionPane.showMessageDialog(null, "error"+e.getMessage());
 
         }
+       ReservationTable.refresh();
                             
                
                         });
-                        /*
+                        
                         btnModifier.setOnMouseClicked((MouseEvent event) -> {
-                            
-                            emplacement = emplacementTable.getSelectionModel().getSelectedItem();
-                            FXMLLoader loader = new FXMLLoader ();
-                            loader.setLocation(getClass().getResource("/gui/AjouterPFXML.fxml"));
-                            try {
-                                loader.load();
-                            } catch (IOException ex) {
-                                Logger.getLogger(ListEmplacementsController.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                            
-                            AjouterPFXMLController addStudentController = loader.getController();
-                            addStudentController.setUpdate(true);
-                            addStudentController.setTextField(emplacement.getType_emplacement(), emplacement.getDescription());
-                            Parent parent = loader.getRoot();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(parent));
-                            stage.initStyle(StageStyle.UTILITY);
-                            stage.show();
-                            
-
                            
 
-                        });*/
+                        });
 
                         HBox managebtn = new HBox(btnModifier,btnsupp);
                         managebtn.setStyle("-fx-alignment:center");

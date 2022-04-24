@@ -42,46 +42,7 @@ public class BackAjoutTableFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        Table t = new Table(tfEmplacement.getText(),
-                Integer.parseInt(tfnbChaises.getText()), 
-                Integer.parseInt(tfStock.getText())
-        );
-        TableService ts = new TableService();
-         String Emp = tfEmplacement.getText();
-         String chaise= tfnbChaises.getText().toString();
-        try {
-            if (  Emp.isEmpty()  ) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText(null);
-                alert.setContentText("Tous les champs doit etre repmlir");
-                alert.show();
-            }
-            else if (  chaise.toString().length()   >10 ) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText(null);
-                alert.setContentText("La valeur du stock doit etre entre 1 et 10");
-                alert.show();
-            }
-           
-//           else if (  tfnbChaises.toString().isEmpty() ||  tfStock.toString().isEmpty() ||  tfEmplacement.toString().isEmpty() ) {
-//                Alert alert = new Alert(Alert.AlertType.ERROR);
-//                alert.setHeaderText(null);
-//                alert.setContentText("Tous les champs doit etre repmlir");
-//                alert.show();
-//            }
-                else {
-            ts.ajouterTable(t);
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Succes");
-            alert.setContentText("Table  ajoutée");
-            alert.show();
-            tfEmplacement.setText("");
-            tfnbChaises.setText("");
-            tfStock.setText("");
-        }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
+        
     }
     @FXML
     private void btndashboardd(MouseEvent event) {
@@ -133,10 +94,51 @@ public class BackAjoutTableFXMLController implements Initializable {
 
     @FXML
     private void save(MouseEvent event) {
+         Table t = new Table(tfEmplacement.getText(),
+                Integer.parseInt(tfnbChaises.getText()), 
+                Integer.parseInt(tfStock.getText())
+        );
+        TableService ts = new TableService();
+         String Emp = tfEmplacement.getText();
+         String chaise= tfnbChaises.getText().toString();
+        try {
+            if (  Emp.isEmpty()  ) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("Tous les champs doit etre repmlir");
+                alert.show();
+            }
+            else if (  chaise.toString().length()   >10 ) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("La valeur du stock doit etre entre 1 et 10");
+                alert.show();
+            }
+           
+//           else if (  tfnbChaises.toString().isEmpty() ||  tfStock.toString().isEmpty() ||  tfEmplacement.toString().isEmpty() ) {
+//                Alert alert = new Alert(Alert.AlertType.ERROR);
+//                alert.setHeaderText(null);
+//                alert.setContentText("Tous les champs doit etre repmlir");
+//                alert.show();
+//            }
+                else {
+            ts.ajouterTable(t);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Succes");
+            alert.setContentText("Table  ajoutée");
+            alert.show();
+            tfEmplacement.setText("");
+            tfnbChaises.setText("");
+            tfStock.setText("");
+        }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @FXML
     private void clean(MouseEvent event) {
+        
     }
     
 }

@@ -56,14 +56,9 @@ public class ListEmplacementsController implements Initializable {
     @FXML
     private TableColumn<Emplacement, String> actionsColl;
     
-    String query = null;
-    Connection connection = null;
-    PreparedStatement preparedStatement = null;
-    ResultSet resultSet = null;
     
     ObservableList<Emplacement> EmplacementListe = FXCollections.observableArrayList();
-    @FXML
-    private TableColumn<Emplacement, Integer> idcoll;
+ 
    
 
     /**
@@ -83,7 +78,6 @@ public class ListEmplacementsController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(ListEmplacementsController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        idcoll.setCellValueFactory(new PropertyValueFactory<Emplacement,Integer>("id_emplacement"));
             vueColl.setCellValueFactory(new PropertyValueFactory<Emplacement,String>("type_emplacement"));
             descriptionColl.setCellValueFactory(new PropertyValueFactory<Emplacement,String>("Description"));  
             emplacementTable.setItems(EmplacementListe);
@@ -111,28 +105,11 @@ public class ListEmplacementsController implements Initializable {
                   //supprimer
                         btnsupp.setOnMouseClicked((MouseEvent event) -> {
               
-                            EmplacementService T = new EmplacementService();
+                         
 
+        });
 
-                             System.out.println(emplacementTable.getSelectionModel().getSelectedItem().getId_emplacement());
-       try{
-//                                     T.deleteEmplacement(emplacementTable.getSelectionModel().getSelectedItem().getId_emplacement());
-//                                       
-//                                       
-//           JOptionPane.showMessageDialog(null, "Data telah terhapus");
-//           Emplacement selectedItem = emplacementTable.getSelectionModel().getSelectedItem();
-//            emplacementTable.getItems().remove(selectedItem);       
-Emplacement e = emplacementTable.getSelectionModel().getSelectedItem();
-                                query = "DELETE FROM `emplacement` WHERE id_emplacement  ="+e.getId_emplacement();
-                                connection = MyDB.getInstance().getConnexion();
-                                preparedStatement = connection.prepareStatement(query);
-                                preparedStatement.execute();
-   } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "error"+e.getMessage());
-
-        }
-
-                        }); 
+                        
                  
                         
                         
