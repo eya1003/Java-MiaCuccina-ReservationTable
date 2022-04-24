@@ -7,6 +7,10 @@ package pidevjava;
 
 import entities.Emplacement;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import services.EmplacementService;
@@ -23,32 +27,24 @@ import javafx.stage.Stage;
  *
  * @author macbook
  */
-public class PidevJava extends Application{
+public class PidevJava {
+public long diff(Date one, Date two){
+    long diifff = (one.getTime()-two.getTime())/86400000;
+    return Math.abs(diifff);
+}
+public static void main(String args[]){
+    Date today = new Date();
+    Calendar mynextcalendar = Calendar.getInstance();
+    Date nyd = mynextcalendar.getTime();
+    PidevJava myobject = new PidevJava();
+    long days = myobject.diff(today,nyd);
+    
+    SimpleDateFormat sdf= new SimpleDateFormat("MMM dd,YYYY");
+    String todaysDate = sdf.format(today);
+    String newYearsDay = sdf.format(nyd);
+    System.out.println(days+"     days from today s date of    "+todaysDate + "  until   "+newYearsDay);
+    
+}
 
  
- 
-	public void start(Stage primaryStage) {
-		 Pane root = new Pane();
-		 ObservableList<PieChart.Data> valueList = FXCollections.observableArrayList(
-				 new PieChart.Data("Nitrogen", 7809),
-				 new PieChart.Data("Oxygen", 2195),
-				 new PieChart.Data("Other", 93));
-				 PieChart pieChart = new PieChart(valueList);
-				 pieChart.setTitle("Air composition");
-				 pieChart.getData().forEach(data -> {
-				 String percentage = String.format("%.2f%%", (data.getPieValue() / 100));
-				 Tooltip toolTip = new Tooltip(percentage);
-				 Tooltip.install(data.getNode(), toolTip);
-				});
-
-		 //adding pieChart to the root.
-		 root.getChildren().addAll(pieChart);
-		 Scene scene = new Scene(root, 450, 450);
-		 primaryStage.setTitle("Pie Chart Demo");
-		 primaryStage.setScene(scene);
-		 primaryStage.show();
-		}
-		public static void main(String[] args) {
-		 launch(args);
-		 }
-	}
+}

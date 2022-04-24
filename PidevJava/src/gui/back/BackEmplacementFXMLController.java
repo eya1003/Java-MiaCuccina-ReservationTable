@@ -331,6 +331,16 @@ public class BackEmplacementFXMLController implements Initializable {
 
     @FXML
     private void getadd(MouseEvent event) {
+        try {
+            Parent parent = FXMLLoader.load(getClass().getResource("/GUI/back/BackAjoutEmplacement.fxml"));
+            Scene scene = new Scene(parent);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AllFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML

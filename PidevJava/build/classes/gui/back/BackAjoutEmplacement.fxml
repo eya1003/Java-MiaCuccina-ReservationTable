@@ -226,7 +226,7 @@
             </VBox>
             <VBox prefHeight="179.0" prefWidth="486.0">
                <children>
-                  <Label prefHeight="46.0" prefWidth="223.0" text="Nombre chaises :">
+                  <Label prefHeight="46.0" prefWidth="223.0" text="Description :">
                      <font>
                         <Font name="Segoe Print Bold" size="25.0" />
                      </font>

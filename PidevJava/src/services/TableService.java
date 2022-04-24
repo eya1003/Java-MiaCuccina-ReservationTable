@@ -8,8 +8,10 @@ package services;
 import entities.Table;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import utils.MyDB;
 
 /**
@@ -53,5 +55,36 @@ public class TableService implements ITable<Table>{
         pre.setInt(3, t.getStock_tab());
         
        pre.executeUpdate();  
+    }
+    
+    
+ public ArrayList<Table> TrierParStockTable() {
+
+        ArrayList<Table> List = new ArrayList<>();
+        try {
+
+            String req = "select * from `table` ORDER BY stock_tab";
+          PreparedStatement pre = connexion.prepareStatement(req);
+
+            ResultSet rs = pre.executeQuery(req);
+
+            while (rs.next()) {
+                Table m = new Table();
+
+               
+                m.setId_tab(rs.getInt("id_tab"));
+                m.setNb_chaise_tab(rs.getInt("nb_chaise_tab"));
+                m.setStock_tab(rs.getInt("stock_tab"));
+                m.setEmp(rs.getString("emp"));
+             
+               
+         
+
+                List.add(m);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return List;
     }
 }

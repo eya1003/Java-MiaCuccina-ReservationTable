@@ -30,6 +30,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -62,6 +63,8 @@ public class BackReservationFXMLController implements Initializable {
     
     
      ObservableList<Reservation> listereservtion = FXCollections.observableArrayList();
+    @FXML
+    private TextField tfsearch;
 
     /**
      * Initializes the controller class.
@@ -148,6 +151,8 @@ public class BackReservationFXMLController implements Initializable {
         };
          actionColl.setCellFactory(cellFoctory);
          ReservationTable.setItems(listereservtion);
+         
+         
     }    
 
     @FXML
@@ -271,6 +276,32 @@ public class BackReservationFXMLController implements Initializable {
             
             ReservationTable.setItems(listereservtion);
             
+    }
+
+    @FXML
+    private void btnTrie(MouseEvent event) {
+        
+         ReservationService ms = new ReservationService();
+        ObservableList<Reservation> list = FXCollections.observableArrayList(ms.TrierParDateReservation());
+
+            phoneColl.setCellValueFactory(new PropertyValueFactory<Reservation,Integer>("phone_resv"));   
+            mailColl.setCellValueFactory(new PropertyValueFactory<Reservation,String>("email_resv"));
+             debutColl.setCellValueFactory(new PropertyValueFactory<Reservation,Date>("date_resv"));
+              finColl.setCellValueFactory(new PropertyValueFactory<Reservation,Date>("end_resv"));
+       ReservationTable.setItems(list);
+    }
+
+    @FXML
+    private void search(MouseEvent event) {
+          ReservationService ms = new ReservationService();
+        ObservableList<Reservation> liste = FXCollections.observableArrayList(ms.RechercherReservation(tfsearch.getText()));
+        
+phoneColl.setCellValueFactory(new PropertyValueFactory<Reservation,Integer>("phone_resv"));   
+            mailColl.setCellValueFactory(new PropertyValueFactory<Reservation,String>("email_resv"));
+             debutColl.setCellValueFactory(new PropertyValueFactory<Reservation,Date>("date_resv"));
+              finColl.setCellValueFactory(new PropertyValueFactory<Reservation,Date>("end_resv"));
+       ReservationTable.setItems(liste);
+       
     }
     
 }

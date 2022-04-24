@@ -30,15 +30,15 @@ public class StatistiqueTableFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         // TODO
-         String query = "SELECT id_tab, emp FROM table ";
-        System.out.println(query);
+         String query = "SELECT phone_resv,email_resv FROM reservation ";
         XYChart.Series<String, Integer> series = new XYChart.Series<>();
         try {
             Connection con = MyDB.getInstance().getConnexion();
             ResultSet rs = con.createStatement().executeQuery(query);
             while (rs.next()) {
-                series.getData().add(new XYChart.Data<>(rs.getString("emp"), rs.getInt("id_tab")));
+                series.getData().add(new XYChart.Data<>(rs.getString("email_resv").toString(), rs.getInt("phone_resv")));
             }
             BarChart.getData().add(series);
         } catch (Exception e) {

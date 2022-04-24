@@ -30,6 +30,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -60,6 +61,8 @@ public class BackTableFXMLController implements Initializable {
     @FXML
     private TableColumn<Table, Integer> stockcoll;
     ObservableList<Table> table = FXCollections.observableArrayList();
+    @FXML
+    private TextField tfsearch;
 
     /**
      * Initializes the controller class.
@@ -275,6 +278,25 @@ public class BackTableFXMLController implements Initializable {
             nbChaiseColl.setCellValueFactory(new PropertyValueFactory<Table,Integer>("nb_chaise_tab"));   
             stockcoll.setCellValueFactory(new PropertyValueFactory<Table,Integer>("stock_tab"));
             tabletable.setItems(table);
+    }
+
+    @FXML
+    private void search(MouseEvent event) {
+      
+    }
+
+    
+
+    @FXML
+    private void triii(MouseEvent event) {
+        TableService ms = new TableService();
+        ObservableList<Table> liste = FXCollections.observableArrayList(ms.TrierParStockTable());
+
+             idColl.setCellValueFactory(new PropertyValueFactory<Table,Integer>("id_tab"));
+            vueColl1.setCellValueFactory(new PropertyValueFactory<Emplacement,String>("emp"));
+            nbChaiseColl.setCellValueFactory(new PropertyValueFactory<Table,Integer>("nb_chaise_tab"));   
+            stockcoll.setCellValueFactory(new PropertyValueFactory<Table,Integer>("stock_tab"));
+            tabletable.setItems(liste);
     }
     
 }
